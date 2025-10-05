@@ -1,0 +1,7 @@
+{
+  "name": "Calorimeter",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
