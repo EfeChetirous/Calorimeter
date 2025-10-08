@@ -1,0 +1,141 @@
+<ion-content [fullscreen]="true" class="sms-verification-content">
+  <!-- Back Button -->
+  <div class="back-button-container">
+    <ion-button fill="clear" class="back-button" (click)="goBack()">
+      <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+    </ion-button>
+  </div>
+
+  <div class="verification-container">
+    <!-- Header Section -->
+    <div class="header-section">
+      <div class="icon-container">
+        <ion-icon name="phone-portrait" class="phone-icon"></ion-icon>
+      </div>
+      
+      <h1 class="main-title">Doğrulama Kodu</h1>
+      <p class="subtitle">
+        <span class="phone-number">{{ maskedPhoneNumber }}</span> numarasına 
+        gönderilen 6 haneli kodu girin.
+      </p>
+    </div>
+
+    <!-- Code Input Section -->
+    <div class="code-section">
+      <div class="code-inputs">
+        <input 
+          #input0
+          type="text" 
+          maxlength="1"
+          class="code-input"
+          [value]="codeDigits[0]"
+          (input)="onCodeInput($event, 0)"
+          (keydown)="onKeyDown($event, 0)"
+          (paste)="onPaste($event)"
+          (focus)="currentIndex = 0"
+          [class.active]="currentIndex === 0"
+          [class.filled]="codeDigits[0]">
+        
+        <input 
+          #input1
+          type="text" 
+          maxlength="1"
+          class="code-input"
+          [value]="codeDigits[1]"
+          (input)="onCodeInput($event, 1)"
+          (keydown)="onKeyDown($event, 1)"
+          (paste)="onPaste($event)"
+          (focus)="currentIndex = 1"
+          [class.active]="currentIndex === 1"
+          [class.filled]="codeDigits[1]">
+        
+        <input 
+          #input2
+          type="text" 
+          maxlength="1"
+          class="code-input"
+          [value]="codeDigits[2]"
+          (input)="onCodeInput($event, 2)"
+          (keydown)="onKeyDown($event, 2)"
+          (paste)="onPaste($event)"
+          (focus)="currentIndex = 2"
+          [class.active]="currentIndex === 2"
+          [class.filled]="codeDigits[2]">
+        
+        <input 
+          #input3
+          type="text" 
+          maxlength="1"
+          class="code-input"
+          [value]="codeDigits[3]"
+          (input)="onCodeInput($event, 3)"
+          (keydown)="onKeyDown($event, 3)"
+          (paste)="onPaste($event)"
+          (focus)="currentIndex = 3"
+          [class.active]="currentIndex === 3"
+          [class.filled]="codeDigits[3]">
+        
+        <input 
+          #input4
+          type="text" 
+          maxlength="1"
+          class="code-input"
+          [value]="codeDigits[4]"
+          (input)="onCodeInput($event, 4)"
+          (keydown)="onKeyDown($event, 4)"
+          (paste)="onPaste($event)"
+          (focus)="currentIndex = 4"
+          [class.active]="currentIndex === 4"
+          [class.filled]="codeDigits[4]">
+        
+        <input 
+          #input5
+          type="text" 
+          maxlength="1"
+          class="code-input"
+          [value]="codeDigits[5]"
+          (input)="onCodeInput($event, 5)"
+          (keydown)="onKeyDown($event, 5)"
+          (paste)="onPaste($event)"
+          (focus)="currentIndex = 5"
+          [class.active]="currentIndex === 5"
+          [class.filled]="codeDigits[5]">
+      </div>
+      
+      <div class="timer-section" *ngIf="timeLeft > 0">
+        <p class="timer-text">
+          Kodu tekrar gönderebilirsiniz: 
+          <span class="timer-countdown">{{ formatTime(timeLeft) }}</span>
+        </p>
+      </div>
+      
+      <div class="resend-section" *ngIf="timeLeft === 0">
+        <p class="resend-text">
+          Kodu almadınız mı? 
+          <a href="#" class="resend-link" (click)="resendCode($event)">
+            Tekrar Gönder
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-section">
+      <ion-button 
+        expand="block" 
+        class="verify-button"
+        [disabled]="!isCodeComplete"
+        (click)="verifyCode()">
+        Doğrula
+      </ion-button>
+      
+      <ion-button 
+        expand="block" 
+        fill="outline" 
+        class="change-phone-button"
+        (click)="changePhoneNumber()">
+        Telefon Numarasını Değiştir
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

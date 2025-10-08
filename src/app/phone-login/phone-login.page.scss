@@ -1,0 +1,182 @@
+.phone-login-content {
+  --background: #ffffff;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem 1.5rem;
+  background: #ffffff;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.app-icon {
+  margin-bottom: 2rem;
+}
+
+.icon-gradient {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 50%, #C084FC 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.3);
+}
+
+.main-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.form-section {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  margin-bottom: 2rem;
+}
+
+.input-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.phone-input {
+  --background: #ffffff;
+  --color: #1f2937;
+  --placeholder-color: #9ca3af;
+  --border-radius: 12px;
+  --border-width: 1px;
+  --border-color: #d1d5db;
+  --padding-start: 1rem;
+  --padding-end: 1rem;
+  --padding-top: 1rem;
+  --padding-bottom: 1rem;
+  font-size: 1rem;
+  height: 56px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.phone-input:focus-within {
+  --border-color: #8B5CF6;
+  border-color: #8B5CF6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.continue-button {
+  --background: linear-gradient(135deg, #8B5CF6 0%, #A855F7 50%, #C084FC 100%);
+  --color: #ffffff;
+  --border-radius: 12px;
+  --padding-top: 1rem;
+  --padding-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  height: 56px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.3);
+  transition: all 0.2s ease;
+}
+
+.continue-button:hover:not([disabled]) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+.continue-button[disabled] {
+  --background: #e5e7eb;
+  --color: #9ca3af;
+  box-shadow: none;
+  transform: none;
+}
+
+.legal-section {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.legal-text {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  line-height: 1.4;
+  margin: 0;
+  padding: 1rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #f3f4f6;
+}
+
+.legal-link {
+  color: #8B5CF6;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.legal-link:hover {
+  color: #7c3aed;
+  text-decoration: underline;
+}
+
+// Responsive design
+@media (max-width: 480px) {
+  .login-container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .main-title {
+    font-size: 1.5rem;
+  }
+  
+  .app-icon {
+    margin-bottom: 1.5rem;
+  }
+  
+  .icon-gradient {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+// Animation for smooth entrance
+.login-container {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
