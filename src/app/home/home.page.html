@@ -1,20 +1,80 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="dashboard-header">
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title class="dashboard-title">
+      {{ getGreeting() }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="dashboard-content">
+  <div class="dashboard-container">
+    
+    <!-- Calorie Summary Card -->
+    <ion-card class="calorie-summary-card">
+      <ion-card-header>
+        <ion-card-title class="calorie-title">Today's Calories</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="calorie-content">
+        <div class="calorie-display">
+          <div class="current-calories">
+            <span class="calorie-number">{{ currentCalories }}</span>
+            <span class="calorie-unit">kcal</span>
+          </div>
+          <div class="calorie-limit">
+            of {{ dailyCalorieLimit }} kcal
+          </div>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="progress-section">
+          <ion-progress-bar 
+            [value]="getCalorieProgress() / 100" 
+            class="calorie-progress">
+          </ion-progress-bar>
+          <div class="progress-text">
+            <span class="remaining">{{ getRemainingCalories() }} kcal remaining</span>
+            <span class="percentage">{{ getCalorieProgress() | number:'1.0-0' }}%</span>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <!-- Add Meal Button -->
+    <ion-button 
+      expand="block" 
+      size="large" 
+      class="add-meal-button"
+      (click)="addMeal()">
+      <ion-icon name="add" slot="start"></ion-icon>
+      Add Meal
+    </ion-button>
+
+    <!-- Today's Meals -->
+    <ion-card class="meals-card">
+      <ion-card-header>
+        <ion-card-title class="meals-title">Today's Meals</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="meals-content">
+        <div class="meals-list" *ngIf="meals.length > 0; else noMeals">
+          <div class="meal-item" *ngFor="let meal of meals">
+            <div class="meal-info">
+              <div class="meal-name">{{ meal.name }}</div>
+              <div class="meal-time">{{ meal.time }}</div>
+            </div>
+            <div class="meal-calories">
+              {{ meal.calories }} kcal
+            </div>
+          </div>
+        </div>
+        <ng-template #noMeals>
+          <div class="no-meals">
+            <ion-icon name="restaurant" class="no-meals-icon"></ion-icon>
+            <p>No meals added yet</p>
+            <p class="no-meals-subtitle">Tap "Add Meal" to get started</p>
+          </div>
+        </ng-template>
+      </ion-card-content>
+    </ion-card>
+
   </div>
 </ion-content>

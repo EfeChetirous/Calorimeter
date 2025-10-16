@@ -1,0 +1,139 @@
+<ion-header [translucent]="true" class="add-meal-header">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="page-title">Add Meal</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="add-meal-content">
+  <div class="add-meal-container">
+    
+    <!-- Photo Section -->
+    <ion-card class="photo-card">
+      <ion-card-header>
+        <ion-card-title class="card-title">Meal Photo</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="photo-content">
+        
+        <!-- Photo Display -->
+        <div class="photo-display" *ngIf="isPhotoCaptured; else photoPlaceholder">
+          <img [src]="capturedPhoto" alt="Captured meal" class="captured-image">
+          <div class="photo-actions">
+            <ion-button 
+              fill="clear" 
+              size="small" 
+              class="action-button retake-button"
+              (click)="retakePhoto()">
+              <ion-icon name="camera" slot="icon-only"></ion-icon>
+            </ion-button>
+            <ion-button 
+              fill="clear" 
+              size="small" 
+              class="action-button remove-button"
+              (click)="removePhoto()">
+              <ion-icon name="trash" slot="icon-only"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+
+        <!-- Photo Placeholder -->
+        <ng-template #photoPlaceholder>
+          <div class="photo-placeholder">
+            <ion-icon name="camera" class="camera-icon"></ion-icon>
+            <p class="placeholder-text">Take a photo of your meal</p>
+            <p class="placeholder-subtitle">or select from gallery</p>
+          </div>
+        </ng-template>
+
+        <!-- Photo Buttons -->
+        <div class="photo-buttons" *ngIf="!isPhotoCaptured">
+          <ion-button 
+            expand="block" 
+            fill="outline" 
+            class="photo-button camera-button"
+            (click)="capturePhoto()">
+            <ion-icon name="camera" slot="start"></ion-icon>
+            Take Photo
+          </ion-button>
+          <ion-button 
+            expand="block" 
+            fill="outline" 
+            class="photo-button gallery-button"
+            (click)="selectFromGallery()">
+            <ion-icon name="images" slot="start"></ion-icon>
+            From Gallery
+          </ion-button>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Meal Information Form -->
+    <ion-card class="form-card">
+      <ion-card-header>
+        <ion-card-title class="card-title">Meal Information</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="form-content">
+        
+        <!-- Meal Name -->
+        <ion-item class="form-item">
+          <ion-label position="floating">Meal Name</ion-label>
+          <ion-input
+            type="text"
+            [(ngModel)]="mealName"
+            placeholder="e.g., Chicken Salad"
+            class="form-input">
+          </ion-input>
+        </ion-item>
+
+        <!-- Calories -->
+        <ion-item class="form-item">
+          <ion-label position="floating">Calories</ion-label>
+          <ion-input
+            type="number"
+            [(ngModel)]="calories"
+            placeholder="Enter calories"
+            class="form-input">
+          </ion-input>
+        </ion-item>
+
+        <!-- Notes -->
+        <ion-item class="form-item">
+          <ion-label position="floating">Notes (Optional)</ion-label>
+          <ion-input
+            type="text"
+            [(ngModel)]="notes"
+            placeholder="Any additional notes..."
+            class="form-input">
+          </ion-input>
+        </ion-item>
+
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Save Button -->
+    <div class="save-section">
+      <ion-button 
+        expand="block" 
+        size="large" 
+        class="save-button"
+        [disabled]="!isFormValid() || isSubmitting"
+        (click)="saveMeal()">
+        <ion-icon name="checkmark" slot="start" *ngIf="!isSubmitting"></ion-icon>
+        <ion-icon name="hourglass" slot="start" *ngIf="isSubmitting"></ion-icon>
+        {{ isSubmitting ? 'Saving...' : 'Save Meal' }}
+      </ion-button>
+    </div>
+
+  </div>
+
+  <!-- Hidden file input for web fallback -->
+  <input 
+    type="file" 
+    accept="image/*" 
+    #fileInput 
+    style="display: none;"
+    (change)="processFile($event.target?.files?.[0] || null)">
+</ion-content>

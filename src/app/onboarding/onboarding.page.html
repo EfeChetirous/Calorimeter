@@ -1,0 +1,100 @@
+<ion-content [fullscreen]="true" class="onboarding-content">
+  <!-- Back Button -->
+  <div class="back-button-container">
+    <ion-button fill="clear" class="back-button" (click)="goBack()">
+      <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+    </ion-button>
+  </div>
+
+  <div class="onboarding-container">
+    <!-- Header Section -->
+    <div class="header-section">
+      <div class="icon-container">
+        <ion-icon name="person-add" class="user-icon"></ion-icon>
+      </div>
+      
+      <h1 class="main-title">Welcome to Calorimeter</h1>
+      <p class="subtitle">
+        Let's personalize your calorie tracking experience.
+      </p>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-section">
+      <!-- Email Input -->
+      <div class="input-group">
+        <ion-item class="form-item">
+          <ion-input
+            type="email"
+            [(ngModel)]="user.email"
+            placeholder="Enter your email"
+            class="form-input-email">
+          </ion-input>
+        </ion-item>
+      </div>
+
+      <!-- Gender Select -->
+      <div class="input-group">
+        <ion-item class="form-item">
+          <ion-select
+            [(ngModel)]="user.gender"
+            placeholder="Select your gender"
+            interface="popover"
+            class="form-select">
+            <ion-select-option 
+              *ngFor="let option of genderOptions" 
+              [value]="option.value">
+              {{ option.label }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+
+      <!-- Height Input -->
+      <div class="input-group">
+        <ion-item class="form-item">
+          <ion-input
+            type="number"
+            [(ngModel)]="user.height"
+            placeholder="Enter your height"
+            class="form-input">
+          </ion-input>
+        </ion-item>
+      </div>
+
+      <!-- Weight Input -->
+      <div class="input-group">
+        <ion-item class="form-item">
+          <ion-input
+            type="number"
+            [(ngModel)]="user.weight"
+            placeholder="Enter your weight"
+            class="form-input">
+          </ion-input>
+        </ion-item>
+      </div>
+
+      <!-- Target Calorie Input -->
+      <div class="input-group">
+        <ion-item class="form-item">
+          <ion-input
+            type="number"
+            [(ngModel)]="user.targetCalorie"
+            placeholder="Enter your target calories"
+            class="form-input">
+          </ion-input>
+        </ion-item>
+      </div>
+    </div>
+
+    <!-- Action Button -->
+    <div class="action-section">
+      <ion-button 
+        expand="block" 
+        class="continue-button"
+        (click)="onContinue()">
+        Continue
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

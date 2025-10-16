@@ -213,8 +213,8 @@ export class SmsVerificationPage implements OnInit, OnDestroy, AfterViewInit {
       
       // Simüle edilmiş doğrulama
       if (code === '123456') {
-        // Başarılı doğrulama
-        this.router.navigate(['/home']);
+        // Başarılı doğrulama - navigate to onboarding
+        this.router.navigate(['/onboarding']);
       } else {
         // Hatalı kod - kullanıcıya bildirim gösterilebilir
         console.log('Invalid code');

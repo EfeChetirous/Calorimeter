@@ -18,4 +18,12 @@ export const routes: Routes = [
     path: 'sms-verification',
     loadComponent: () => import('./sms-verification/sms-verification.page').then( m => m.SmsVerificationPage)
   },
+  {
+    path: 'onboarding',
+    loadComponent: () => import('./onboarding/onboarding.page').then( m => m.OnboardingPage)
+  },
+  {
+    path: 'add-meal',
+    loadComponent: () => import('./add-meal/add-meal.page').then( m => m.AddMealPage)
+  },
 ];
