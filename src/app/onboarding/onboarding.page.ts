@@ -90,8 +90,4 @@ export class OnboardingPage implements OnInit {
     // This method will be implemented when backend integration is ready
     console.log('Sending user data to backend...');
   }
-
-  goBack() {
-    this.router.navigate(['/sms-verification']);
-  }
 }
