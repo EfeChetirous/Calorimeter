@@ -18,6 +18,7 @@ interface UserData {
   username: string;
   email: string;
   gender: string;
+  age: number | null;
   height: number | null;
   weight: number | null;
   targetCalorie: number | null;
@@ -46,6 +47,7 @@ export class OnboardingPage implements OnInit {
     username: '',
     email: '',
     gender: '',
+    age: null,
     height: null,
     weight: null,
     targetCalorie: null
@@ -89,6 +91,7 @@ export class OnboardingPage implements OnInit {
       this.user.gender &&
       this.user.height &&
       this.user.weight &&
+      this.user.age &&
       this.user.targetCalorie
     );
   }
