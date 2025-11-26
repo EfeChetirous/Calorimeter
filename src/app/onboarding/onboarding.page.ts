@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Device } from '@capacitor/device';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -13,6 +14,8 @@ import {
   ToastController
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
+import { OnboardingService } from '../core/services/onboarding.service';
+import { OnboardingRequest } from '../core/models/onboarding-request.model';
 
 interface UserData {
   username: string;
@@ -60,7 +63,8 @@ export class OnboardingPage implements OnInit {
 
   constructor(
     private router: Router,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private onboardingService: OnboardingService
   ) { }
 
   ngOnInit() {
@@ -72,11 +76,7 @@ export class OnboardingPage implements OnInit {
     if (this.isFormValid()) {
       console.log('User data:', this.user);
 
-      // TODO: Send data to backend API
-      // this.sendDataToBackend();
-
-      // For now, navigate to home page
-      this.router.navigate(['/home']);
+      await this.sendDataToBackend();
     } else {
       console.log('Form validation failed');
       await this.showValidationError();
@@ -116,9 +116,36 @@ export class OnboardingPage implements OnInit {
     toast.present();
   }
 
-  // TODO: Implement API call to send user data to backend
-  private sendDataToBackend() {
-    // This method will be implemented when backend integration is ready
-    console.log('Sending user data to backend...');
+  private async sendDataToBackend() {
+    const deviceId = await Device.getId();
+
+    const request: OnboardingRequest = {
+      userName: this.user.username,
+      gender: this.user.gender,
+      age: this.user.age!,
+      email: this.user.email,
+      height: this.user.height!,
+      weight: this.user.weight!,
+      deviceId: deviceId.identifier,
+      targetCalories: this.user.targetCalorie!.toString(),
+      jwtToken: ''
+    };
+
+    this.onboardingService.saveOnboardingValues(request).subscribe({
+      next: (response) => {
+        console.log('Onboarding success:', response);
+        this.router.navigate(['/home']);
+      },
+      error: async (error) => {
+        console.error('Onboarding error:', error);
+        const toast = await this.toastController.create({
+          message: 'Failed to save data. Please try again.',
+          duration: 2000,
+          position: 'bottom',
+          color: 'danger'
+        });
+        toast.present();
+      }
+    });
   }
 }

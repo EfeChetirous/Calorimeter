@@ -7,6 +7,9 @@ const config: CapacitorConfig = {
   plugins: {
     Camera: {
       permissions: ['camera']
+    },
+    CapacitorHttp: {
+      enabled: true
     }
   }
 };
