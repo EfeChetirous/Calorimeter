@@ -7,15 +7,15 @@
         <div class="app-icon">
           <div class="icon-gradient">
             <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-              <circle cx="30" cy="20" r="8" fill="white" opacity="0.9"/>
-              <circle cx="20" cy="35" r="6" fill="white" opacity="0.8"/>
-              <circle cx="40" cy="35" r="7" fill="white" opacity="0.9"/>
-              <path d="M25 15L30 10L35 15" stroke="white" stroke-width="2" fill="none"/>
+              <circle cx="30" cy="20" r="8" fill="white" opacity="0.9" />
+              <circle cx="20" cy="35" r="6" fill="white" opacity="0.8" />
+              <circle cx="40" cy="35" r="7" fill="white" opacity="0.9" />
+              <path d="M25 15L30 10L35 15" stroke="white" stroke-width="2" fill="none" />
             </svg>
           </div>
         </div>
       </div>
-      
+
       <h1 class="main-title">Welcome to Calorimeter</h1>
       <p class="subtitle">
         Let's personalize your calorie tracking experience.
@@ -24,14 +24,18 @@
 
     <!-- Form Section -->
     <div class="form-section">
+      <!-- Username Input -->
+      <div class="input-group">
+        <ion-item class="form-item">
+          <ion-input type="text" [(ngModel)]="user.username" placeholder="Enter your username" class="form-input-email">
+          </ion-input>
+        </ion-item>
+      </div>
+
       <!-- Email Input -->
       <div class="input-group">
         <ion-item class="form-item">
-          <ion-input
-            type="email"
-            [(ngModel)]="user.email"
-            placeholder="Enter your email"
-            class="form-input-email">
+          <ion-input type="email" [(ngModel)]="user.email" placeholder="Enter your email" class="form-input-email">
           </ion-input>
         </ion-item>
       </div>
@@ -39,14 +43,9 @@
       <!-- Gender Select -->
       <div class="input-group">
         <ion-item class="form-item">
-          <ion-select
-            [(ngModel)]="user.gender"
-            placeholder="Select your gender"
-            interface="popover"
-            class="form-select">
-            <ion-select-option 
-              *ngFor="let option of genderOptions" 
-              [value]="option.value">
+          <ion-select [(ngModel)]="user.gender" placeholder="Select your gender" interface="popover"
+            class="form-input-email">
+            <ion-select-option *ngFor="let option of genderOptions" [value]="option.value">
               {{ option.label }}
             </ion-select-option>
           </ion-select>
@@ -56,11 +55,7 @@
       <!-- Height Input -->
       <div class="input-group">
         <ion-item class="form-item">
-          <ion-input
-            type="number"
-            [(ngModel)]="user.height"
-            placeholder="Enter your height"
-            class="form-input">
+          <ion-input type="number" [(ngModel)]="user.height" placeholder="Enter your height" class="form-input-email">
           </ion-input>
         </ion-item>
       </div>
@@ -68,11 +63,7 @@
       <!-- Weight Input -->
       <div class="input-group">
         <ion-item class="form-item">
-          <ion-input
-            type="number"
-            [(ngModel)]="user.weight"
-            placeholder="Enter your weight"
-            class="form-input">
+          <ion-input type="number" [(ngModel)]="user.weight" placeholder="Enter your weight" class="form-input-email">
           </ion-input>
         </ion-item>
       </div>
@@ -80,11 +71,8 @@
       <!-- Target Calorie Input -->
       <div class="input-group">
         <ion-item class="form-item">
-          <ion-input
-            type="number"
-            [(ngModel)]="user.targetCalorie"
-            placeholder="Enter your target calories"
-            class="form-input">
+          <ion-input type="number" [(ngModel)]="user.targetCalorie" placeholder="Enter your target calories"
+            class="form-input-email">
           </ion-input>
         </ion-item>
       </div>
@@ -92,10 +80,7 @@
 
     <!-- Action Button -->
     <div class="action-section">
-      <ion-button 
-        expand="block" 
-        class="continue-button"
-        (click)="onContinue()">
+      <ion-button expand="block" class="continue-button" (click)="onContinue()">
         Continue
       </ion-button>
     </div>
